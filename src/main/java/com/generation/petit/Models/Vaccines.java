@@ -1,11 +1,13 @@
 package com.generation.petit.Models;
 
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 @Table(name = "vaccines")
@@ -18,6 +20,7 @@ public class Vaccines{
 
     @Column(nullable = false)
     private String vaccine_name;
+
 
     public Vaccines(int vaccine_id, String vaccine_name) {
         this.vaccine_id = vaccine_id;

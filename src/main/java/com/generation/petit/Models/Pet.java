@@ -1,12 +1,18 @@
 package com.generation.petit.Models;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Table(name = "pet")
@@ -43,6 +49,13 @@ public class Pet{
 
     @Column
     private String pet_photo;
+
+    //en la anotacion join column del atributo name hace referencia al nombre de la columna de la tabla
+    @ManyToOne
+    @JoinColumn(name = "client_client_id")
+    private Client client;
+
+
 
     public Pet() {
 

@@ -1,6 +1,9 @@
-package com.generation.petit;
+package com.generation.petit.Controllers;
 
 import java.util.Optional;
+
+import com.generation.petit.Models.Pet;
+import com.generation.petit.Repositories.PetRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

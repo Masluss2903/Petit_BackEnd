@@ -2,10 +2,8 @@ package com.generation.petit.Models;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 import javax.persistence.Id;
@@ -36,7 +34,14 @@ public class Veterinary{
     @Column
     private String vet_rating;
 
+// mappedBy hace referencia al atributo veterinary en la clase pet
+    @OneToMany(mappedBy = "veterinary")
+    private List<Pet> pets;    
 
+    @OneToOne(mappedBy = "veterinary")
+    private User user;
+
+    
     public Veterinary() {
     }
 

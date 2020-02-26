@@ -32,6 +32,16 @@ public class User{
     @Column
     private String client_phone;
 
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "client_client_id",referencedColumnName = "client_id")
+    private Client client;
+
+
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "veterinary_vet_id",referencedColumnName = "vet_id")
+    private Veterinary veterinary;
     
     public User(int user_id, String password, Date register_date, String email, String client_phone) {
         this.user_id = user_id;

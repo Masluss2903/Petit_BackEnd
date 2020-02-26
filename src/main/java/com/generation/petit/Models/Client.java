@@ -40,6 +40,9 @@ public class Client{
     @OneToMany(mappedBy = "client")
     private List<Pet> pets;
 
+// mappedBy hace referencia al atributo client en la clase user  
+    @OneToOne(mappedBy = "client")
+    private User user;
 
     public Client() {
     }

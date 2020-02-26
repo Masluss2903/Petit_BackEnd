@@ -1,7 +1,6 @@
 package com.generation.petit.Models;
 
-import java.util.Set;
-
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +19,10 @@ public class Vaccines{
 
     @Column(nullable = false)
     private String vaccine_name;
+
+
+    @ManyToMany(mappedBy = "petVaccines")
+    List<Pet> pets;
 
 
     public Vaccines(int vaccine_id, String vaccine_name) {

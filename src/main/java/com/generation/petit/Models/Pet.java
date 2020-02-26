@@ -1,11 +1,9 @@
 package com.generation.petit.Models;
 
 import java.util.Date;
-import java.util.Set;
-
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 import javax.persistence.Id;
@@ -55,7 +53,18 @@ public class Pet{
     @JoinColumn(name = "client_client_id")
     private Client client;
 
+    // relacion de veterinary
+    @ManyToOne
+    @JoinColumn(name = "veterinary_vet_id")
+    private Veterinary veterinary;
 
+
+    @ManyToMany
+    @JoinTable(
+        name = "pet_has_vaccines",
+        joinColumns =  @JoinColumn(name = "pet_pet_id"),
+        inverseJoinColumns = @JoinColumn(name = "vaccines_vaccine_id"))
+    List<Vaccines> petVaccines;
 
     public Pet() {
 

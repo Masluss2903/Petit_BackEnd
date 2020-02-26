@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -17,36 +18,36 @@ import javax.persistence.ManyToOne;
 public class Pet{
 
     @Id
-    @GeneratedValue
-    @Column(nullable = false)
-    private int pet_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pet_id", nullable = false)
+    private int petId;
 
-    @Column(nullable = false)
-    private String pet_name;
+    @Column(name = "pet_name", nullable = false)
+    private String petName;
 
-    @Column
-    private String pet_breed;
+    @Column(name = "pet_breed")
+    private String petBreed;
 
-    @Column(nullable = false)
-    private String pet_gender;
+    @Column(name = "pet_gender", nullable = false)
+    private String petGender;
 
-    @Column
-    private String pet_color;
+    @Column(name = "pet_color")
+    private String petColor;
 
-    @Column(nullable = false)
-    private Date pet_birthday;
+    @Column(name = "pet_birthday", nullable = false)
+    private Date petBirthday;
 
-    @Column
-    private int pet_weight;
+    @Column(name = "pet_weight")
+    private int petWeight;
 
-    @Column
-    private String pet_bloodtype;
+    @Column(name = "pet_bloodtype")
+    private String petBloodtype;
 
-    @Column
-    private String pet_signal;
+    @Column(name = "pet_signal")
+    private String petSignal;
 
-    @Column
-    private String pet_photo;
+    @Column(name = "pet_photo")
+    private String petPhoto;
 
     //en la anotacion join column del atributo name hace referencia al nombre de la columna de la tabla
     @ManyToOne
@@ -70,98 +71,29 @@ public class Pet{
 
     }
 
-    public Pet(int pet_id, String pet_name, String pet_breed, String pet_gender, String pet_color, Date pet_birthday,
-    int pet_weight, String pet_bloodtype, String pet_signal, String pet_photo) {
-        this.pet_id = pet_id;
-        this.pet_name = pet_name;
-        this.pet_breed = pet_breed;
-        this.pet_gender = pet_gender;
-        this.pet_color = pet_color;
-        this.pet_birthday = pet_birthday;
-        this.pet_weight = pet_weight;
-        this.pet_bloodtype = pet_bloodtype;
-        this.pet_signal = pet_signal;
-        this.pet_photo = pet_photo;
+    public Pet(String petName, String petBreed, String petGender, String petColor, Date petBirthday, int petWeight,
+            String petBloodtype, String petSignal, String petPhoto, Client client, Veterinary veterinary) {
+        this.petName = petName;
+        this.petBreed = petBreed;
+        this.petGender = petGender;
+        this.petColor = petColor;
+        this.petBirthday = petBirthday;
+        this.petWeight = petWeight;
+        this.petBloodtype = petBloodtype;
+        this.petSignal = petSignal;
+        this.petPhoto = petPhoto;
+        this.client = client;
+        this.veterinary = veterinary;
+    
     }
 
-    public int getPet_id() {
-        return pet_id;
+    public List<Vaccines> getPetVaccines() {
+        return petVaccines;
     }
 
-    public void setPet_id(int pet_id) {
-        this.pet_id = pet_id;
+    public void setPetVaccines(List<Vaccines> petVaccines) {
+        this.petVaccines = petVaccines;
     }
 
-    public String getPet_name() {
-        return pet_name;
-    }
-
-    public void setPet_name(String pet_name) {
-        this.pet_name = pet_name;
-    }
-
-    public String getPet_breed() {
-        return pet_breed;
-    }
-
-    public void setPet_breed(String pet_breed) {
-        this.pet_breed = pet_breed;
-    }
-
-    public String getPet_gender() {
-        return pet_gender;
-    }
-
-    public void setPet_gender(String pet_gender) {
-        this.pet_gender = pet_gender;
-    }
-
-    public String getPet_color() {
-        return pet_color;
-    }
-
-    public void setPet_color(String pet_color) {
-        this.pet_color = pet_color;
-    }
-
-    public Date getPet_birthday() {
-        return pet_birthday;
-    }
-
-    public void setPet_birthday(Date pet_birthday) {
-        this.pet_birthday = pet_birthday;
-    }
-
-    public int getPet_weight() {
-        return pet_weight;
-    }
-
-    public void setPet_weight(int pet_weight) {
-        this.pet_weight = pet_weight;
-    }
-
-    public String getPet_bloodtype() {
-        return pet_bloodtype;
-    }
-
-    public void setPet_bloodtype(String pet_bloodtype) {
-        this.pet_bloodtype = pet_bloodtype;
-    }
-
-    public String getPet_signal() {
-        return pet_signal;
-    }
-
-    public void setPet_signals(String pet_signal) {
-        this.pet_signal = pet_signal;
-    }
-
-    public String getPet_photo() {
-        return pet_photo;
-    }
-
-    public void setPet_photo(String pet_photo) {
-        this.pet_photo = pet_photo;
-    }
 
 }

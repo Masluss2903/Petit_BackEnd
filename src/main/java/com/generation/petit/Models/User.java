@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -16,89 +17,40 @@ import javax.persistence.OneToOne;
 public class User{
     
     @Id
-    @GeneratedValue
-    @Column(nullable = false)
-    private int user_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id", nullable = false)
+    private int userId;
 
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    private Date register_date;
+    @Column(name = "register_date", nullable = false)
+    private Date registerDate;
 
     @Column(nullable = false)
     private String email;
 
-    @Column
-    private String client_phone;
-
-
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "client_client_id",referencedColumnName = "client_id")
     private Client client;
-
-
     
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "veterinary_vet_id",referencedColumnName = "vet_id")
     private Veterinary veterinary;
     
-    public User(int user_id, String password, Date register_date, String email, String client_phone) {
-        this.user_id = user_id;
-        this.password = password;
-        this.register_date = register_date;
-        this.email = email;
-        this.client_phone = client_phone;
-    }
+
 
     public User() {
     }
-    
 
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
+    public User(String password, Date registerDate, String email, Client client, Veterinary veterinary) {
         this.password = password;
-    }
-
-    public Date getRegister_date() {
-        return register_date;
-    }
-
-    public void setRegister_date(Date register_date) {
-        this.register_date = register_date;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
+        this.registerDate = registerDate;
         this.email = email;
-    }
-
-    public String getClient_phone() {
-        return client_phone;
-    }
-
-    public void setClient_phone(String client_phone) {
-        this.client_phone = client_phone;
+        this.client = client;
+        this.veterinary = veterinary;
     }
 
 
-
-
-    
 
 }

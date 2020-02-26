@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -15,21 +16,21 @@ import javax.persistence.OneToOne;
 public class Client{
     
     @Id
-    @GeneratedValue
-    @Column(nullable = false)
-    private int client_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "client_id", nullable = false)
+    private int clientId;
 
-    @Column(nullable = false)
-    private String client_name;
+    @Column(name = "client_name", nullable = false)
+    private String clientName;
 
-    @Column
-    private Date client_birthday;
+    @Column(name = "client_birthday")
+    private Date clientBirthday;
 
-    @Column
-    private String client_address;
+    @Column(name = "client_address")
+    private String clientAddress;
 
-    @Column
-    private String client_phone;
+    @Column(name = "client_phone")
+    private String clientPhone;
 
 // mappedBy hace referencia al atributo client en la clase pet
     @OneToMany(mappedBy = "client")
@@ -42,55 +43,15 @@ public class Client{
     public Client() {
     }
 
-    public Client(int client_id, String client_name, Date client_birthday, String client_address, String client_phone) {
-        this.client_id = client_id;
-        this.client_name = client_name;
-        this.client_birthday = client_birthday;
-        this.client_address = client_address;
-        this.client_phone = client_phone;
+    public Client(String clientName, Date clientBirthday, String clientAddress, String clientPhone, List<Pet> pets,
+            User user) {
+        this.clientName = clientName;
+        this.clientBirthday = clientBirthday;
+        this.clientAddress = clientAddress;
+        this.clientPhone = clientPhone;
+        this.pets = pets;
+        this.user = user;
     }
 
-    public int getClient_id() {
-        return client_id;
-    }
 
-    public void setClient_id(int client_id) {
-        this.client_id = client_id;
-    }
-
-    public String getClient_name() {
-        return client_name;
-    }
-
-    public void setClient_name(String client_name) {
-        this.client_name = client_name;
-    }
-
-    public Date getClient_birthday() {
-        return client_birthday;
-    }
-
-    public void setClient_birthday(Date client_birthday) {
-        this.client_birthday = client_birthday;
-    }
-
-    public String getClient_address() {
-        return client_address;
-    }
-
-    public void setClient_address(String client_address) {
-        this.client_address = client_address;
-    }
-
-    public String getClient_phone() {
-        return client_phone;
-    }
-
-    public void setClient_phone(String client_phone) {
-        this.client_phone = client_phone;
-    }
-
-    
-
-    
 }

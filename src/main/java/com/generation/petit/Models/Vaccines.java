@@ -4,6 +4,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -13,39 +14,27 @@ import javax.persistence.ManyToMany;
 public class Vaccines{
     
     @Id
-    @GeneratedValue
-    @Column(nullable = false)
-    private int vaccine_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="vaccine_id", nullable = false)
+    private int vaccineId;
 
-    @Column(nullable = false)
-    private String vaccine_name;
+    @Column(name = "vaccine_name", nullable = false)
+    private String vaccineName;
 
 
     @ManyToMany(mappedBy = "petVaccines")
     List<Pet> pets;
 
-
-    public Vaccines(int vaccine_id, String vaccine_name) {
-        this.vaccine_id = vaccine_id;
-        this.vaccine_name = vaccine_name;
+    public Vaccines() {
     }
 
-    public int getVaccine_id() {
-        return vaccine_id;
+    public Vaccines(String vaccineName, List<Pet> pets) {
+        this.vaccineName = vaccineName;
+        this.pets = pets;
     }
 
-    public void setVaccine_id(int vaccine_id) {
-        this.vaccine_id = vaccine_id;
-    }
 
-    public String getVaccine_name() {
-        return vaccine_name;
-    }
-
-    public void setVaccine_name(String vaccine_name) {
-        this.vaccine_name = vaccine_name;
-    }
-
+ 
     
 
 }

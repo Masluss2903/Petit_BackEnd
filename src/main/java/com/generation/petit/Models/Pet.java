@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -52,11 +55,13 @@ public class Pet{
     //en la anotacion join column del atributo name hace referencia al nombre de la columna de la tabla
     @ManyToOne
     @JoinColumn(name = "client_client_id")
+    @JsonIgnoreProperties("pets")
     private Client client;
 
     // relacion de veterinary
     @ManyToOne
     @JoinColumn(name = "veterinary_vet_id")
+    @JsonIgnoreProperties("pets")
     private Veterinary veterinary;
 
 
@@ -65,6 +70,7 @@ public class Pet{
         name = "pet_has_vaccines",
         joinColumns =  @JoinColumn(name = "pet_pet_id"),
         inverseJoinColumns = @JoinColumn(name = "vaccines_vaccine_id"))
+    @JsonIgnoreProperties("pets")
     List<Vaccines> petVaccines;
 
     public Pet() {
@@ -87,6 +93,102 @@ public class Pet{
     
     }
 
+    public int getPetId() {
+        return petId;
+    }
+
+    public void setPetId(int petId) {
+        this.petId = petId;
+    }
+
+    public String getPetName() {
+        return petName;
+    }
+
+    public void setPetName(String petName) {
+        this.petName = petName;
+    }
+
+    public String getPetBreed() {
+        return petBreed;
+    }
+
+    public void setPetBreed(String petBreed) {
+        this.petBreed = petBreed;
+    }
+
+    public String getPetGender() {
+        return petGender;
+    }
+
+    public void setPetGender(String petGender) {
+        this.petGender = petGender;
+    }
+
+    public String getPetColor() {
+        return petColor;
+    }
+
+    public void setPetColor(String petColor) {
+        this.petColor = petColor;
+    }
+
+    public Date getPetBirthday() {
+        return petBirthday;
+    }
+
+    public void setPetBirthday(Date petBirthday) {
+        this.petBirthday = petBirthday;
+    }
+
+    public int getPetWeight() {
+        return petWeight;
+    }
+
+    public void setPetWeight(int petWeight) {
+        this.petWeight = petWeight;
+    }
+
+    public String getPetBloodtype() {
+        return petBloodtype;
+    }
+
+    public void setPetBloodtype(String petBloodtype) {
+        this.petBloodtype = petBloodtype;
+    }
+
+    public String getPetSignal() {
+        return petSignal;
+    }
+
+    public void setPetSignal(String petSignal) {
+        this.petSignal = petSignal;
+    }
+
+    public String getPetPhoto() {
+        return petPhoto;
+    }
+
+    public void setPetPhoto(String petPhoto) {
+        this.petPhoto = petPhoto;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Veterinary getVeterinary() {
+        return veterinary;
+    }
+
+    public void setVeterinary(Veterinary veterinary) {
+        this.veterinary = veterinary;
+    }
+
     public List<Vaccines> getPetVaccines() {
         return petVaccines;
     }
@@ -94,6 +196,8 @@ public class Pet{
     public void setPetVaccines(List<Vaccines> petVaccines) {
         this.petVaccines = petVaccines;
     }
+
+    
 
 
 }

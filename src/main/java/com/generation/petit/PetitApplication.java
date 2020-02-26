@@ -1,22 +1,5 @@
 package com.generation.petit;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-
-import com.generation.petit.Models.Client;
-import com.generation.petit.Models.Pet;
-import com.generation.petit.Models.User;
-import com.generation.petit.Models.Vaccines;
-import com.generation.petit.Models.Veterinary;
-import com.generation.petit.Repositories.ClientRepository;
-import com.generation.petit.Repositories.PetRepository;
-import com.generation.petit.Repositories.UserRepository;
-import com.generation.petit.Repositories.VaccinesRepository;
-import com.generation.petit.Repositories.VeterinaryRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

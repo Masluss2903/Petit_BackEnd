@@ -29,8 +29,8 @@ public class PetController {
 	}
 
 	@GetMapping("/pet/{id}")
-	public ResponseEntity<Pet> getPet(@PathVariable(value = "id") int id) {
-		return ResponseEntity.ok(petRepository.findById(id).get());
+	public ResponseEntity<Pet> getPet(@PathVariable(value = "id") String id) {
+		return ResponseEntity.ok(petRepository.findById(Integer.parseInt(id)).get());
 	}
 
 	@PostMapping("/pet")

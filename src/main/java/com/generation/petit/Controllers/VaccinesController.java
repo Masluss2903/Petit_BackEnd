@@ -32,18 +32,18 @@ public class VaccinesController {
         return ResponseEntity.ok(vaccinesRepository.findById(id).get());
     }
     @PostMapping("/vaccines")
-	public ResponseEntity<Vaccines> createVet(@Valid @RequestBody Vaccines vaccines) {
+	public ResponseEntity<Vaccines> createVaccines(@Valid @RequestBody Vaccines vaccines) {
 		return ResponseEntity.ok(vaccinesRepository.save(vaccines));
     }
-    @PutMapping(value="vaccines/{id}")
-	public ResponseEntity<Vaccines> updateVet(@PathVariable int id, @RequestBody Vaccines vaccines) {
+    @PutMapping(value="/vaccines/{id}")
+	public ResponseEntity<Vaccines> updateVaccines(@PathVariable int id, @RequestBody Vaccines vaccines) {
 		if (!vaccinesRepository.findById(id).isPresent()){
 			ResponseEntity.badRequest().build();
 		}
 		return ResponseEntity.ok(vaccinesRepository.save(vaccines));
     }
     @DeleteMapping("/vaccines/{id}")
-	public ResponseEntity deleteVet(@PathVariable int id){
+	public ResponseEntity deleteVaccines(@PathVariable int id){
 		if (!vaccinesRepository.findById(id).isPresent()){
             ResponseEntity.badRequest().build();
             

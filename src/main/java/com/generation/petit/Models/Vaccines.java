@@ -1,16 +1,20 @@
 package com.generation.petit.Models;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = "vaccines")
@@ -24,17 +28,18 @@ public class Vaccines{
     @Column(name = "vaccine_name", nullable = false)
     private String vaccineName;
 
+    @Column(name = "vaccine_description", nullable = false)
+    private String vaccineDescription;
 
-    @ManyToMany(mappedBy = "petVaccines")
-    @JsonIgnoreProperties("petVaccines")
-    List<Pet> pets;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "vaccines", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<PetVaccines> petVaccines = new HashSet<>();
 
     public Vaccines() {
     }
 
-    public Vaccines(String vaccineName, List<Pet> pets) {
-        this.vaccineName = vaccineName;
-        this.pets = pets;
+    public Vaccines(int vaccineId) {
+        this.vaccineId = vaccineId;
     }
 
     public int getVaccineId() {
@@ -53,16 +58,23 @@ public class Vaccines{
         this.vaccineName = vaccineName;
     }
 
-    public List<Pet> getPets() {
-        return pets;
+    public Set<PetVaccines> getPetVaccines() {
+        return petVaccines;
     }
-
-    public void setPets(List<Pet> pets) {
-        this.pets = pets;
-    }
-
-
  
-    
+    public void setPetVaccines(Set<PetVaccines> petVaccines) {
+        this.petVaccines = petVaccines;
+    }
+     
+    public void addPetVaccines(PetVaccines petVaccines) {
+        this.petVaccines.add(petVaccines);
+    }
 
+    public String getVaccineDescription() {
+        return vaccineDescription;
+    }
+
+    public void setVaccineDescription(String vaccineDescription) {
+        this.vaccineDescription = vaccineDescription;
+    }
 }

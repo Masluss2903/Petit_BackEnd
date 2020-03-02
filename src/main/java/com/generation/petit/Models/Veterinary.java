@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -40,7 +41,8 @@ public class Veterinary{
     private String vetRating;
 
 // mappedBy hace referencia al atributo veterinary en la clase pet
-    @OneToMany(mappedBy = "veterinary")
+    @OneToMany
+    @JoinColumn(name = "veterinary_vet_id")
     @JsonIgnoreProperties("veterinary")
     private List<Pet> pets;    
 

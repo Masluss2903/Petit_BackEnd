@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -37,7 +38,8 @@ public class Client{
     private String clientPhone;
 
 // mappedBy hace referencia al atributo client en la clase pet
-    @OneToMany(mappedBy = "client")
+    @OneToMany
+    @JoinColumn(name = "client_client_id")
     @JsonIgnoreProperties("client")
     private List<Pet> pets;
 

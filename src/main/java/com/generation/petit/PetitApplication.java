@@ -1,5 +1,19 @@
 package com.generation.petit;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.generation.petit.Models.Pet;
+import com.generation.petit.Models.PetVaccines;
+import com.generation.petit.Models.Vaccines;
+import com.generation.petit.Repositories.ClientRepository;
+import com.generation.petit.Repositories.PetRepository;
+import com.generation.petit.Repositories.UserRepository;
+import com.generation.petit.Repositories.VaccinesRepository;
+import com.generation.petit.Repositories.VeterinaryRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,15 +21,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class PetitApplication implements CommandLineRunner {
 
-	 /*@Autowired
-	 private VaccinesRepository vaccinesRepository;
+	/*@Autowired
+	private VaccinesRepository vaccinesRepository;
 	@Autowired
 	private ClientRepository clientRepository;
 	@Autowired
 	private VeterinaryRepository veterinaryRepository;
 	@Autowired
 	private UserRepository userRepository;
-
 	@Autowired
 	private PetRepository petRepository;*/
 
@@ -43,12 +56,15 @@ public class PetitApplication implements CommandLineRunner {
 		//petRepository.save(new Pet("Nancy", "Callejero", "Hembra", "Cafe", 
 		 //new Date(), 3 , "Azul", "Con manchas blancas", "petPhoto", maria.get(), gua.get()));
 
-		/*List<Vaccines> vacunas = new ArrayList<>();
-		vaccinesRepository.findAll().forEach(vacunas::add);
+		/*Vaccines v1 = vaccinesRepository.findById(2).get();
 
-		Pet pet = petRepository.findById(1).get();
+		Pet pet = petRepository.findById(8).get();
 
-		pet.setPetVaccines(vacunas);
+		PetVaccines pv = new PetVaccines();
+		pv.setVaccines(v1);
+		pv.setDate(new Date());
+
+		pet.addPetVaccine(pv);
 		petRepository.save(pet);*/
 
 

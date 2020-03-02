@@ -1,9 +1,13 @@
 package com.generation.petit.Models;
 
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
@@ -12,9 +16,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = "pet")
@@ -64,14 +67,8 @@ public class Pet{
     @JsonIgnoreProperties("pets")
     private Veterinary veterinary;
 
-
-    @ManyToMany
-    @JoinTable(
-        name = "pet_has_vaccines",
-        joinColumns =  @JoinColumn(name = "pet_pet_id"),
-        inverseJoinColumns = @JoinColumn(name = "vaccines_vaccine_id"))
-    @JsonIgnoreProperties("pets")
-    List<Vaccines> petVaccines;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pet", cascade = CascadeType.ALL)
+    private Set<PetVaccines> petVaccines = new HashSet<>();
 
     public Pet() {
 
@@ -189,15 +186,18 @@ public class Pet{
         this.veterinary = veterinary;
     }
 
-    public List<Vaccines> getPetVaccines() {
+    public Set<PetVaccines> getPetVacciness() {
         return petVaccines;
     }
-
-    public void setPetVaccines(List<Vaccines> petVaccines) {
+ 
+    public void setPetVaccines(Set<PetVaccines> petVaccines) {
         this.petVaccines = petVaccines;
     }
-
-    
+     
+    public void addPetVaccine(PetVaccines petVaccines) {
+        this.petVaccines.add(petVaccines);
+        petVaccines.setPet(this);
+    }   
 
 
 }
